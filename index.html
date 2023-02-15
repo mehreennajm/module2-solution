@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Shopping List Check Off</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css" media="screen">
+  </head>
+<body ng-app="ShoppingListCheckOff">
+  <div class="container">
+  <h1>Shopping List Check Off</h1>
+
+  <div class="row">
+
+    <!-- To Buy List -->
+    <div class="col-md-6" ng-controller="ToBuyController as ctrl1">
+     <h2>To Buy:</h2>
+     <ul>
+       <li ng-repeat="item in ctrl1.items" ng-model="item">
+		   Buy {{ item.quantity }} {{ item.name }}
+		   <button class="btn btn-default" ng-click="ctrl1.bought(item);">
+			   <span class="glyphicon glyphicon-ok"></span> Buy
+		   </button>
+	   </li>
+     </ul>
+     <div class="emptyMessage" ng-if="ctrl1.items.length == 0">
+		Everything is bought!
+	 </div>
+    </div>
+
+    <!-- Already Bought List -->
+    <div class="col-md-6" ng-controller="AlreadyBoughtController as ctrl2">
+     <h2>Already Bought:</h2>
+     <ul>
+       <li ng-repeat="item in ctrl2.items" ng-model="item">
+		   Bought {{ item.quantity }} {{ item.name }}
+	   </li>
+     </ul>
+	 <div class="emptyMessage" ng-if="ctrl2.items.length == 0">
+		Nothing bought yet
+	 </div>
+    </div>
+  </div>
+</div>
+<!-- Add the following script tag to import AngularJS -->
+<script src="https://cdn.jsdelivr.net/npm/angular@1.8.0/angular.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
